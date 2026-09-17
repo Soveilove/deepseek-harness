@@ -35,7 +35,6 @@ const DEV_ONLY_AREAS = [
   'package.json',
   'packages/test-support/',
   'packages/test-support/client-runtime/',
-  'website/',
   'native/',
 ] as const
 

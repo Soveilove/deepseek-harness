@@ -856,10 +856,8 @@ function main(): void {
       const changed = fixPackageDependencies(root, state)
       console.log(`${GATE}: fixed ${String(changed.length)} manifest(s).`)
       refreshPnpmLockfile(root)
-      const graphChanges = writeModuleGraph(root)
-      console.log(
-        `${GATE}: refreshed pnpm-lock.yaml and wrote ${String(graphChanges.length)} module-graph artifact(s).`,
-      )
+      writeModuleGraph(root)
+      console.log(`${GATE}: refreshed pnpm-lock.yaml and validated the workspace peer-dependency graph.`)
       state = readPackageDependencyState(root)
     }
   }

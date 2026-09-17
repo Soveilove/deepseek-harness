@@ -100,8 +100,6 @@ const GENERIC_SKIPS: readonly GenericSkip[] = [
   // The preset-roster loop names the `cordis` preset id, not a package.
   { file: 'apps/cli/tests/windows-shell.spec.ts', upstream: ['cordis'] },
   // GROUP_ORDER holds `packages/<group>/` directory names, not package names.
-  { file: 'scripts/gen-module-graph.ts', upstream: ['cordis'] },
-  { file: 'scripts/gen-doc-graphs.ts', upstream: ['cordis'] },
   // `cordis/*` is the extensions event domain, not a package subpath. The
   // generated catalogs and every producer/consumer must preserve that wire id.
   { file: 'docs/event-producer-consumer.md', upstream: ['cordis'] },
@@ -128,7 +126,6 @@ const GENERIC_SKIPS: readonly GenericSkip[] = [
   { file: 'packages/experimental/inspector/tests/cordis-query.host.spec.ts', upstream: ['cordis'] },
   { file: 'packages/experimental/inspector/tests/cordis-tree.host.spec.ts', upstream: ['cordis'] },
   { file: 'packages/experimental/inspector/tests/plugin.client.spec.ts', upstream: ['cordis'] },
-  { file: 'scripts/gen-cordis-catalog.ts', upstream: ['cordis'] },
   // The UI locale namespace and input-trigger source id are product keys.
   { file: 'packages/client/ui-settings-plugin-inventory/src/client/PluginInventorySettingsTab.tsx', upstream: ['cordis'] },
   { file: 'packages/extensions/ui-cordis/src/client/CordisActionRow.tsx', upstream: ['cordis'] },
@@ -148,9 +145,6 @@ interface PostCondition {
 const POSTCONDITIONS: readonly PostCondition[] = [
   { file: 'vendor/cordis/package.json', text: '"name": "@deepseek-ai/cordis"', count: 1 },
   { file: 'vendor/hmr/package.json', text: '"name": "@deepseek-ai/cordis-plugin-hmr"', count: 1 },
-  { file: 'scripts/cordis-walk.ts', text: '@deepseek-ai\\/cordis', count: 1 },
-  { file: 'scripts/cordis-walk.ts', text: '!== \'@deepseek-ai/cordis\'', count: 1 },
-  { file: 'scripts/gen-scoped-events.ts', text: '=== \'@deepseek-ai/cordis\'', count: 1 },
   { file: 'packages/typert/generator/src/analyzer.ts', text: '!== \'@deepseek-ai/cordis\'', count: 2 },
   { file: 'scripts/check-workspace-constraints.ts', text: '?.[\'@deepseek-ai/cordis\']', count: 2 },
   { file: 'packages/boot/app-boot/tsdown.config.ts', text: '[\'@deepseek-ai/cordis-plugin-include\']', count: 1 },
@@ -171,13 +165,6 @@ const POSTCONDITIONS: readonly PostCondition[] = [
  * quote a neighbouring line the generic pass would rewrite.
  */
 const EXACT_EDITS: readonly ExactEdit[] = [
-  {
-    id: 'cordis-walk-merge-head',
-    file: 'scripts/cordis-walk.ts',
-    find: 'const MERGE_HEAD = /declare module [\'"](?:cordis|\\.\\/context\\.ts)[\'"]/',
-    replace: 'const MERGE_HEAD = /declare module [\'"](?:@deepseek-ai\\/cordis|\\.\\/context\\.ts)[\'"]/',
-    expect: 1,
-  },
   {
     id: 'constraints-manifest-lookup',
     file: 'scripts/check-workspace-constraints.ts',
