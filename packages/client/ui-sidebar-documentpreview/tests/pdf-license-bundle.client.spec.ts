@@ -52,6 +52,8 @@ describe('published PDF.js licenses', () => {
 
       const client = run('tar', ['-xOf', resolve(packageRoot, packed.filename), 'package/lib/client.js'], packageRoot, task.timeout)
       expect(client).toContain('//! Bundled PDF.js license notices')
+      const coreJsLicense = readFileSync(join(packageRoot, 'licenses/core-js.txt'), 'utf8').trimEnd()
+      expect(client).toContain(['// core-js/LICENSE', '// ', ...coreJsLicense.split('\n').map(line => `// ${line}`)].join('\n'))
       const pdfRoot = dirname(require.resolve('pdfjs-dist/package.json'))
       for (const name of licenseNames) {
         const source = readFileSync(join(pdfRoot, name), 'utf8').trimEnd()

@@ -123,3 +123,27 @@ Moving a file between lifecycle folders means updating the `Status:` line and re
 ### Chinese counterparts
 
 A `.zh.md` counterpart mirrors its English sibling's structure section-for-section under the [i18n contract](../../docs/i18n/README.md); the machine-checked header tokens (`# Agent Note: ` and the `Status:` line) stay in English verbatim. The format gate skips `.zh.md` files — the pairing gate checks their consistency.
+
+## Independent research reading guide
+
+This is a topic guide, not a complete index. It does not replace the lifecycle/class tree or decide which Agent Notes are authoritative. Read the Chinese counterpart of an Agent Note first when one exists; the paired English file remains the source for exact identifiers, symbols, and links. Every Agent Note currently has a Chinese counterpart except the directory instruction files.
+
+### Runtime foundations
+
+Start with [capability seams](implemented/architecture/2026-06-13-capability-seams.md), [event-sourced sessions](implemented/architecture/2026-06-11-event-sourced-sessions.md), [per-session Agent Presets](implemented/architecture/2026-08-03-per-session-agent-presets.md), [profile plugin bundles](implemented/architecture/2026-08-05-profile-plugin-bundles.md), and [Host-plane ownership after Presets](implemented/architecture/2026-08-10-host-plane-ownership-after-presets.md). These explain the Plugin, Service, Bundle, Profile, Preset, and Session vocabulary needed before changing the Runtime.
+
+### Tools, requests, and durable evidence
+
+Read [reconstructable requests](implemented/architecture/2026-07-05-reconstructable-requests.md), [canonical tool output](implemented/architecture/2026-07-20-canonical-tool-output-contract.md), [session history and event transport](implemented/architecture/2026-08-18-session-history-and-event-transport.md), and [plugin-owned message projections](implemented/architecture/2026-09-11-plugin-owned-message-projections.md). These are the primary reading path for a future Debug Mode or Debug Harness.
+
+### Desktop, Web, and Client
+
+Read [GUI Web Client architecture](implemented/architecture/2026-07-19-gui-web-client-architecture.md), [Electron Desktop packaging and updates](implemented/architecture/2026-08-25-electron-desktop-packaging-and-updates.md), and [client-derived Tool presentation](implemented/architecture/2026-08-23-client-derived-tool-presentation.md) before changing a product surface.
+
+### Engineering methods
+
+Read [dependencies over hand-rolling](implemented/process/2026-07-26-dependencies-over-hand-rolling.md), [evidence-driven performance optimization](implemented/process/2026-09-06-evidence-driven-performance-skill.md), and the testing-class Notes when planning simplification, validation, or performance work.
+
+### Upstream process as reference
+
+GitHub stack, release, publication, CI, and translation Notes remain learning material. They are not the default workflow for this independent branch. Use them when studying upstream practice or when the user explicitly asks for an upstream contribution, release, or publication task.

@@ -87,6 +87,6 @@ Use [Agent Note rules](../../notes/README.md) for durable rationale, alternative
 
 When the task requests stacked PRs, choose layers before editing and use official GitHub stacks and separate worktrees. Keep each layer mergeable: benchmark infrastructure can protect the measured baseline; the optimization layer carries its fix, functional coverage, and tighter budget. Independent bottlenecks may use separate stacks. Fix a finding in its owning layer before propagating upward.
 
-Apply [pre-push checks](../dsh-pre-push-checks/SKILL.md), report only executed evidence, and inspect CI rather than assuming local timing proves runner stability. After marking ready, evaluate review findings against code and executable evidence; reply with the reason or fix and resolve addressed threads. Do not dismiss a report merely because it came from a bot.
+Apply focused local checks, report only executed evidence, and inspect CI rather than assuming local timing proves runner stability. After marking ready, evaluate review findings against code and executable evidence; reply with the reason or fix and resolve addressed threads. Do not dismiss a report merely because it came from a bot.
 
 Summarize each result as: workload → before/after absolute values and ratio → endpoint and memory semantics → behavior evidence → negative control → exact checks → exclusions. Separate author-reported historical numbers, fresh local measurements, and CI evidence. Stop at the agreed scenario/fix scope; retain a short ranked follow-up list instead of chasing unrelated opportunities.

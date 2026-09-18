@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config'
-import webConfig from './vitest.web.config.ts'
-import { vitestExecArgv } from './vitest.shared.ts'
+import webConfig from './web.config.ts'
+import { vitestExecArgv } from './shared.ts'
 
 // Manual high-cardinality diagnostics stay outside every default Vitest
 // inventory and therefore outside CI's executed test lanes.

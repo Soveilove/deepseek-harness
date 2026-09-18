@@ -129,3 +129,27 @@ Status: <status>
 ### 中文对侧文件
 
 `.zh.md` 对侧文件按 [i18n 约定](../../docs/i18n/README.zh.md)逐章节与其英文对侧文件保持相同结构；机器检查的头部标记（`# Agent Note: ` 和 `Status:` 行）保持英文原样不翻译。格式门禁跳过 `.zh.md` 文件；配对门禁检查它们的一致性。
+
+## 独立研究阅读导览
+
+本节是主题导览，不是完整索引。它不替代按生命周期和类别组织的目录树，也不决定哪份 Agent Note 是当前权威。存在中文对侧时优先阅读 `.zh.md`；英文文件仍用于核对精确的标识符、符号和链接。除目录说明文件外，当前每份 Agent Note 都有中文对侧。
+
+### Runtime 基础
+
+先阅读[能力 seam](implemented/architecture/2026-06-13-capability-seams.zh.md)、[事件溯源 Session](implemented/architecture/2026-06-11-event-sourced-sessions.zh.md)、[每个 Session 独立的 Agent Preset](implemented/architecture/2026-08-03-per-session-agent-presets.zh.md)、[Profile Plugin Bundle](implemented/architecture/2026-08-05-profile-plugin-bundles.zh.md)以及[Preset 之后的 Host Plane 所有权](implemented/architecture/2026-08-10-host-plane-ownership-after-presets.zh.md)。在修改 Runtime 前，这些内容解释 Plugin、Service、Bundle、Profile、Preset 和 Session 的基础词汇。
+
+### Tool、请求和可追溯证据
+
+阅读[可重建请求](implemented/architecture/2026-07-05-reconstructable-requests.zh.md)、[规范 Tool 输出](implemented/architecture/2026-07-20-canonical-tool-output-contract.zh.md)、[Session 历史与事件传输](implemented/architecture/2026-08-18-session-history-and-event-transport.zh.md)以及[Plugin 所有的消息投影](implemented/architecture/2026-09-11-plugin-owned-message-projections.zh.md)。这是未来理解 Debug Mode 和 Debug Harness 的主要阅读路径。
+
+### Desktop、Web 和 Client
+
+修改产品界面前，阅读[GUI Web Client 架构](implemented/architecture/2026-07-19-gui-web-client-architecture.zh.md)、[Electron Desktop 打包和更新](implemented/architecture/2026-08-25-electron-desktop-packaging-and-updates.zh.md)以及[Client 派生的 Tool 展示](implemented/architecture/2026-08-23-client-derived-tool-presentation.zh.md)。
+
+### 工程方法
+
+在计划瘦身、验证或性能工作前，阅读[优先依赖而非手写实现](implemented/process/2026-07-26-dependencies-over-hand-rolling.zh.md)、[以证据驱动的性能优化](implemented/process/2026-09-06-evidence-driven-performance-skill.zh.md)以及 testing 类别的 Notes。
+
+### 上游流程参考
+
+GitHub 堆叠分支、发布、发行、CI 和翻译相关 Notes 都继续作为学习材料保留，但不是当前独立分支的默认工作流。研究上游实践，或用户明确要求上游贡献、发布或发行任务时再使用它们。

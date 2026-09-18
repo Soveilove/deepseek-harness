@@ -9,7 +9,7 @@
  *
  * CommonJS by requirement: istanbul-reports loads custom reporters with a bare
  * require() outside the tsx/ESM pipeline (istanbul-reports index.js create()),
- * so this file can be neither TypeScript nor ESM. Wired into vitest.config.ts
+ * so this file can be neither TypeScript nor ESM. Wired into scripts/vitest/config.ts
  * by absolute path — require() would resolve a relative specifier against
  * istanbul-reports' own directory.
  */

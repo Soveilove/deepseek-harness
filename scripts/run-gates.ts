@@ -668,7 +668,7 @@ function builtBinSmokeGate(needs: string[] = ['build']): Gate {
     'vitest',
     'run',
     '--config',
-    'vitest.e2e.config.ts',
+    'scripts/vitest/e2e.config.ts',
     'apps/cli/tests/profiles/headless/tests/keyless-smoke.e2e.ts',
     'apps/cli/tests/built-bin.e2e.ts',
     'packages/host/directory-picker-native/tests/built-worker.e2e.ts',

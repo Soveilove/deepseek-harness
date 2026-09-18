@@ -29,8 +29,3 @@ pre-commit:
 
 pre-merge-commit:
   jobs: []
-
-pre-push:
-  jobs:
-    - name: typecheck
-      run: pnpm run typecheck

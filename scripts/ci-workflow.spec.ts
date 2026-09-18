@@ -557,7 +557,7 @@ describe('CI workflow', () => {
   })
 
   it('keeps supported LSP source under native Windows coverage', () => {
-    const config = readFileSync(resolve(root, 'vitest.config.ts'), 'utf8')
+    const config = readFileSync(resolve(root, 'scripts/vitest/config.ts'), 'utf8')
 
     expect(config).not.toContain('packages/lsp/lsp-stdio/src/connection.ts')
     expect(config).not.toContain('packages/lsp/lsp-stdio/src/index.ts')
@@ -588,7 +588,7 @@ describe('CI workflow', () => {
   })
 
   it('keeps every Vitest project process-isolated on native Windows', () => {
-    const config = readFileSync(resolve(root, 'vitest.config.ts'), 'utf8')
+    const config = readFileSync(resolve(root, 'scripts/vitest/config.ts'), 'utf8')
 
     expect(config).not.toContain("pool: process.platform === 'win32' ? 'threads' : 'forks'")
     expect(config.match(/pool: 'forks'/g)).toHaveLength(2)

@@ -1,6 +1,6 @@
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
-import { standardDecoratorPlugin, vitestExecArgv } from './vitest.shared.ts'
+import { standardDecoratorPlugin, vitestExecArgv } from './shared.ts'
 
 /**
  * CI performance gate. Node CPU cases use compiled plain-Node workers under

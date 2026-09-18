@@ -20,6 +20,8 @@ Readable files use `dsh-resource://file/session/<sessionId>/<path>`. The path ma
 
 Markdown and code reuse the incremental primitives with cumulative paged text. HTML, PDF, and images read complete `Uint8Array<ArrayBuffer>` data; Host transport remains base64. Published buffers are borrowed read-only and never persist into layout or Session JSON. PDF.js runs in an owned Worker with version-matched bundled font and decoder data, and copies input before transfer to preserve Preview's retained buffer. HTML runs in a Blob iframe with `sandbox="allow-scripts"`, without same-origin, popup, form, download, or top-navigation privileges. The browser retains its normal external-network rules. Bounded static local JS/CSS reads stay in the parent; the opaque frame creates its own asset Blobs, because it cannot load parent-origin Blobs. PNG, JPEG, GIF, WebP, BMP, ICO, and SVG use image-specific Blob URLs in an `<img>` static-image context. An image wider than the pane scales down to its width at its aspect ratio; a smaller image keeps its intrinsic CSS-pixel dimensions centred by auto margins, and a taller image extends the shared scroller's vertical range ([sidebar preview polish](../feature/2026-09-11-sidebar-document-preview-polish.md)). The renderer provides no zoom or drag-to-pan. SVG markup never enters the application DOM or an iframe, so scripts remain inert and cannot reach the parent page. Replacing HTML or an image revokes its root Blob URL.
 
+PDF preview uses the same-version PDF.js legacy main-thread and Worker builds. Their bundled polyfills allow plugin import without a native global `Iterator`; an eager import failure otherwise prevents the whole document-preview plugin from activating. The compatibility code and its core-js license are included locally.
+
 ## Alternatives considered
 
 **Methods attached to an Iterator or its values.** This conflates observation with commands and repeats capability identity in data frames. Frames carry data and failures; explicit Preview RPC callbacks perform reads.
@@ -35,6 +37,8 @@ Markdown and code reuse the incremental primitives with cumulative paged text. H
 **A local server, virtual host, or `file:` iframe.** These require extra hosting or filesystem authority. The preview is for static generated pages, not a complete application runtime; modules, dynamic filesystem requests, and arbitrary nested asset graphs are outside its support.
 
 **Sanitize SVG into the application DOM or an iframe.** A sanitizer would add a second SVG parser and an evolving active-content policy before placing untrusted markup in an interactive document. The `<img>` static-image context preserves native SVG rendering and intrinsic dimensions without giving the markup a script-capable DOM.
+
+**Modern PDF.js builds or a handwritten Iterator shim.** The modern build dereferences `Iterator.prototype` during import and cannot load when that constructor is absent. A local shim would take ownership of dependency compatibility that the maintained legacy builds already provide.
 
 ## Consequences
 

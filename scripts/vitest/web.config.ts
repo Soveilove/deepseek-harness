@@ -1,6 +1,6 @@
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
-import { standardDecoratorPlugin, vitestExecArgv } from './vitest.shared.ts'
+import { standardDecoratorPlugin, vitestExecArgv } from './shared.ts'
 
 // Web browser lane: real host entry points, built-client interaction snapshots,
 // and replayed keyless e2e scenarios outside the unit/e2e includes. Linux PR CI
@@ -8,7 +8,7 @@ import { standardDecoratorPlugin, vitestExecArgv } from './vitest.shared.ts'
 // explicit local workflows. Real-model cases self-skip without DEEPSEEK_API_KEY.
 try {
   // Node >= 21.7 native; throws when the file does not exist.
-  process.loadEnvFile(new URL('.env', import.meta.url).pathname)
+  process.loadEnvFile(new URL('../../.env', import.meta.url).pathname)
 } catch {
   // No .env — fine, the environment may already carry the variables.
 }

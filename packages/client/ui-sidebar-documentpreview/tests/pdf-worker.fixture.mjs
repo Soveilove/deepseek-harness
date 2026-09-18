@@ -15,5 +15,6 @@ const port = {
     listeners.delete(listener)
   },
 }
+Reflect.deleteProperty(globalThis, 'Iterator')
 const { WorkerMessageHandler } = await import(workerData.workerUrl)
 WorkerMessageHandler.initializeFromPort(port)

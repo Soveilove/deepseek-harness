@@ -1,6 +1,6 @@
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
-import { standardDecoratorPlugin, vitestExecArgv } from './vitest.shared.ts'
+import { standardDecoratorPlugin, vitestExecArgv } from './shared.ts'
 
 // Real-API suite, separate because it spends tokens. Each test self-skips without
 // its provider credential for keyless CI; credentialed workflows preflight the
@@ -8,7 +8,7 @@ import { standardDecoratorPlugin, vitestExecArgv } from './vitest.shared.ts'
 // `.env`, with provider-specific endpoint overrides where supported.
 try {
   // Node >= 21.7 native; throws when the file does not exist.
-  process.loadEnvFile(new URL('.env', import.meta.url).pathname)
+  process.loadEnvFile(new URL('../../.env', import.meta.url).pathname)
 } catch {
   // No .env — fine, the environment may already carry the variables.
 }
@@ -41,7 +41,7 @@ export default defineConfig({
     execArgv: vitestExecArgv,
     setupFiles: ['./scripts/test-proxy-environment.ts', './scripts/test-invariants.ts'],
     // apps/cli only, not apps/*: apps/web/tests/*.e2e.ts needs the built
-    // frontend dist and runs under vitest.web.config.ts (the test:web job).
+    // frontend dist and runs under scripts/vitest/web.config.ts (the test:web job).
     include: ['packages/*/*/tests/**/*.e2e.ts', 'apps/cli/tests/**/*.e2e.ts'],
     exclude: [
       '**/*.expected.e2e.ts',

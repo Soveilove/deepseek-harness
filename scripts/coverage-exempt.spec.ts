@@ -12,7 +12,7 @@ import { coverageExemptHeavySuites } from './coverage-exempt.ts'
 
 const root = resolve(import.meta.dirname, '..')
 
-/** The spec inventory mirrored from vitest.config.ts testIncludes. */
+/** The spec inventory mirrored from scripts/vitest/config.ts testIncludes. */
 const allSpecs = new Set([
   ...globSync('packages/*/*/tests/**/*.spec.ts', { cwd: root }),
   ...globSync('packages/*/*/tests/**/*.spec.tsx', { cwd: root }),

@@ -6,7 +6,7 @@ import { clientBundle } from '../tsdown.client.ts'
 
 const bundle = clientBundle('@deepseek-ai/dsh-client-ui-sidebar-documentpreview', ['lib/types/index.js'])
 const require = createRequire(import.meta.url)
-const workerSpecifier = 'pdfjs-dist/build/pdf.worker.min.mjs?raw'
+const workerSpecifier = 'pdfjs-dist/legacy/build/pdf.worker.min.mjs?raw'
 const workerModule = '\0dsh-pdf-worker.mjs'
 
 /** License files for PDF.js and the data embedded beside its runtime. */
@@ -20,9 +20,11 @@ function pdfLicenseFiles(root: string): string[] {
 /** Keep every bundled PDF.js license visible in the published client artifact. */
 function pdfLicenseBanner(): string {
   const root = dirname(require.resolve('pdfjs-dist/package.json'))
-  const notice = pdfLicenseFiles(root).map(name =>
+  const notices = pdfLicenseFiles(root).map(name =>
     `${name}\n\n${readFileSync(join(root, name), 'utf8').trimEnd()}`,
-  ).join('\n\n')
+  )
+  notices.push(`core-js/LICENSE\n\n${readFileSync(new URL('./licenses/core-js.txt', import.meta.url), 'utf8').trimEnd()}`)
+  const notice = notices.join('\n\n')
   return ['//! Bundled PDF.js license notices', ...notice.split('\n').map(line => `// ${line}`)].join('\n')
 }
 
@@ -45,7 +47,7 @@ const pdfWorker: NonNullable<UserConfig['plugins']> = [{
   },
   load(id) {
     if (id !== workerModule) return null
-    const path = require.resolve('pdfjs-dist/build/pdf.worker.min.mjs')
+    const path = require.resolve('pdfjs-dist/legacy/build/pdf.worker.min.mjs')
     this.addWatchFile(path)
     return `export default ${JSON.stringify(readFileSync(path, 'utf8'))};`
   },

@@ -17,7 +17,7 @@ export function standardDecoratorPlugin() {
     name: 'dsh-standard-decorators',
     enforce: 'pre' as const,
     transform(code: string, id: string) {
-      const file = id.split('?', 1)[0]!
+      const file = id.split('?', 1).at(0) ?? id
       if (!/\.[cm]?tsx?$/.test(file) || !decoratorSyntax.test(code)) return
       const result = ts.transpileModule(code, {
         fileName: file,
